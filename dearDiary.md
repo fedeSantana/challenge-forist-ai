@@ -38,5 +38,16 @@ Datos que saque del research:
 
 ## Research de diseño
 
-Con todos los juegos que busqué más buscando ideas en dribble, voy a proponer unas mejoras del diseño que permitan mejorar la experiencia del juego, la UI|UX
-o personalizar el estilo de la app un poco. 
+Con todos los juegos que busqué más buscando ideas en dribble, voy a proponer unas mejoras del diseño que permitan mejorar la experiencia del juego, la UI|UX o personalizar un poco el estilo de la app, los resultados que encontre de otros juegos y diseños en general no terminaban de convencerme o aportarme algo nuevo, así que decidí buscar en un área que tiene mucha más experiencia y es más amplia en este sentido: videojuegos de cartas.
+
+Ahí encontre ideas muy interesantes respecto a los estilos posibles, especialmente de la UI, videojuegos realmente hermosos con propuestas muy interesantes.
+
+![image](https://user-images.githubusercontent.com/54949334/223269735-f8d7067f-0828-4377-9522-c8393bdaef39.png)
+
+Y videojuegos con la misma jugabilidad pero con un apartado artístico que deja bastante que desear como:
+
+https://store.steampowered.com/app/1766180/Cards_Matching_Memory_Game/
+https://store.steampowered.com/app/1600280/Cute_Animals_Memory_Card_Game/
+https://store.steampowered.com/app/2073750/memory__El_juego_original_de_parejas_de_Ravensburger/
+
+Pueden ver el research del diseño acá: https://www.figma.com/file/NmJ7gd1zD71mzgHr0zbVP4/Rick%26Morty-Challenge?node-id=0%3A1&t=hDLkR8G2lmy4agid-1
