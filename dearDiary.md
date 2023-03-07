@@ -61,3 +61,8 @@ Me gusta crear diseños. Siempre digo que no sólo sé manejar figma, me gusta d
 ## Código
 
 A partir de acá, lo primero que hago es conseguir hacer un pedido con GraphQL y typescript, la primera vez es bastante difícil que funcione, pero una vez anda una vez pasa a ser todo muy cómodo y sencillo, me descargo los 6 primeros personajes para poder empezar a jugar con el juego y hago los estilos básicos, siendo el cuadro amarillo un _children_ de una vista padre con el logo del juego y el fondo azul.
+
+Un detalle de esta parte es que decidí que los params de la card usen directamente la interfaz importada de graphQL, para que si algún día cambia la api se rompa de forma conjunta y facilitar hacer el cambio, para eso utilice Pick de TS:
+
+![image](https://user-images.githubusercontent.com/54949334/223509186-9bfb617e-71b1-42a3-9da3-f7606b7d4030.png)
+
