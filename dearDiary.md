@@ -51,3 +51,9 @@ https://store.steampowered.com/app/1600280/Cute_Animals_Memory_Card_Game/
 https://store.steampowered.com/app/2073750/memory__El_juego_original_de_parejas_de_Ravensburger/
 
 Pueden ver el research del diseño acá: https://www.figma.com/file/NmJ7gd1zD71mzgHr0zbVP4/Rick%26Morty-Challenge?node-id=0%3A1&t=hDLkR8G2lmy4agid-1
+
+## Diseño
+
+Me gusta crear diseños. Siempre digo que no sólo sé manejar figma, me gusta diseñar, con la inmensidad que esa palabra abarca, siendo así y terminado el research, empiezo a poner en ideas lo que quiero. 
+
+1. Menu que te permite jugar, escoger la dificultad (cantidad de cartas), activar o desactivar el apartado musical. 
