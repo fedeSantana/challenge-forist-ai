@@ -57,3 +57,7 @@ Pueden ver el research del diseño acá: https://www.figma.com/file/NmJ7gd1zD71m
 Me gusta crear diseños. Siempre digo que no sólo sé manejar figma, me gusta diseñar, con la inmensidad que esa palabra abarca, siendo así y terminado el research, empiezo a poner en ideas lo que quiero. 
 
 1. Menu que te permite jugar, escoger la dificultad (cantidad de cartas), activar o desactivar el apartado musical. 
+
+## Código
+
+A partir de acá, lo primero que hago es conseguir hacer un pedido con GraphQL y typescript, la primera vez es bastante difícil que funcione, pero una vez anda una vez pasa a ser todo muy cómodo y sencillo, me descargo los 6 primeros personajes para poder empezar a jugar con el juego y hago los estilos básicos, siendo el cuadro amarillo un _children_ de una vista padre con el logo del juego y el fondo azul.
