@@ -16,5 +16,5 @@ export default function ErrorPage() {
         )
     }
 
-    return <div> Oh no ): it's broken!</div>
+    return <div> Oh no ): its broken!</div>
 }
