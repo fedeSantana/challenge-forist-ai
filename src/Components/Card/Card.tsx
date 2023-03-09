@@ -3,38 +3,44 @@ import styles from './Card.module.scss'
 import backwardImage from '../../assets/backward.png'
 
 type CardProps = Pick<Character, "name" | "image" | "species" | "status"> & {
-	/** Active significa si la carta debe estar mostrando el frente o la parte de atrás,
-	 * si active es true se mostrara el frente, sino se mostrara la parte de detrás.
-	 */
-	active: boolean;
+    /** Es si la carta empieza mostrando la información o no */
+    startPosition: 'front' | 'back'
+    /** Is flipped nos habla de si la carta debe estar al revés que su posición inicial */
+    isFlipped: boolean;
     /** action when you click the Card */
 	action?: React.MouseEventHandler<HTMLButtonElement>;
+    /** Si la tarjeta ha sido removida */
+    removed?: boolean
 };
 
-function CardContent({ active, image, status, species, name }: CardProps) {
+function CardContent({
+	startPosition,
+	image,
+	status,
+	species,
+	name,
+}: CardProps) {
+	const statusCircle = {
+		Alive: "🟢",
+		Dead: "🔴",
+		Unknown: "🟡",
+	} as const;
 
-    const statusCircle = {
-        Alive: "🟢",
-        Dead: "🔴",
-        Unknown: "🟡",
-    } as const;
+	const statusAreCorrect = ["Alive", "Dead", "Unknown"].includes(
+		status ?? ""
+	);
 
-    const statusAreCorrect = ["Alive", "Dead", "Unknown"].includes(
-        status ?? ""
-    );
+	const circleStatus = statusAreCorrect
+		? statusCircle[status as "Alive" | "Dead" | "Unknown"]
+		: "";
 
-    const circleStatus = statusAreCorrect
-        ? statusCircle[status as "Alive" | "Dead" | "Unknown"]
-        : "";
-
-    return (
+	return (
 		<>
 			<div
-				className={
-					styles[active ? "cardFront" : "cardBack"] +
-					" " +
-					styles[active ? "normal" : "reverse"]
-				}
+				className={`
+					${styles["cardFront"]}
+                    ${styles[startPosition === "front" ? "normal" : "reverse"]}
+                    `}
 			>
 				<img className={styles["cardImage"]} src={image ?? ""} alt="" />
 				<h2 className={styles["cardTitle"]}> {name} </h2>
@@ -46,9 +52,16 @@ function CardContent({ active, image, status, species, name }: CardProps) {
 			</div>
 			<div
 				className={`
-                ${styles[active ? "cardBack" : "cardFront"]}
-                ${styles[active ? "reverse" : "normal"]} 
-                ${styles['backBackground']}
+                ${styles["cardBack"]}
+                ${styles["backBackground"]}
+                ${
+                    styles[
+                        startPosition === "front"
+                            ? "reverse"
+                            : "normal"
+                    ]
+                }
+
                 `}
 			>
 				<img
@@ -62,11 +75,18 @@ function CardContent({ active, image, status, species, name }: CardProps) {
 }
 
 function Card(cardProps: CardProps) {
-
-
 	return (
-		<button className={styles["card"]} onClick={cardProps.action}>
-			<div className={styles["cardContent"]}>
+		<button
+			className={`
+        ${styles["card"]}
+        ${cardProps.removed ? styles["removed"] : ""}`}
+			onClick={cardProps.action}
+		>
+			<div
+				className={`${styles["cardContent"]} ${
+					cardProps.isFlipped ? styles["reverse"] : ""
+				}`}
+			>
 				<CardContent {...cardProps} />
 			</div>
 		</button>

@@ -2,14 +2,15 @@
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    margin: 12px;
     /*  Not good solution*/
-    width: 23%;
-    height: 31%;
+    width: 100%;
     perspective: 1000px;
     background: transparent;
     outline: 0;
     border: 0;
+    aspect-ratio: 4/5;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
 }
 
 .cardContent {
@@ -54,10 +55,6 @@
 
 }
 
-.card:active .cardContent {
-    transform: rotateY(180deg);
-}
-
 .cardFront,
 .cardBack {
     position: absolute;
@@ -86,4 +83,8 @@
 
 .normal {
     transform: rotateY(0);
+}
+
+.removed {
+    opacity: 0;
 }

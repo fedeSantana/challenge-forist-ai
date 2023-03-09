@@ -1,51 +1,43 @@
-import { useNavigate } from "react-router-dom";
-import { useGetCharacters } from "../../../../services/queries";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Card from "../../../../Components/Card/Card";
 import styles from './home.module.scss'
+import { CharactersQuery } from "../../../../gql/graphql";
 
 function Home() {
+	const navigate = useNavigate();
+	const characters = useOutletContext <CharactersQuery>();
 
-        const characters = useGetCharacters()
-        const navigate = useNavigate();
 
-        if (characters.isLoading){
-            return <div> CARGANDO </div>
-        }
-
-        if (characters.isSuccess && characters.data){
-        return (
+		return (
 			<>
 				<h1 className={styles["ContainerTitle"]}>Personajes</h1>
 				<div className={styles["CardContainer"]}>
-					{characters.data.charactersByIds?.map((card) => (
+					{characters.charactersByIds?.map((card) => (
 						<Card
 							key={card?.id}
 							name={card?.name}
 							image={card?.image}
 							species={card?.species}
 							status={card?.status}
-							active={true}
+							isFlipped={false}
+							startPosition="front"
 						/>
 					))}
-					{characters.data.charactersByIds?.map((card) => (
+					{characters.charactersByIds?.map((card) => (
 						<Card
 							key={card?.id}
 							name={card?.name}
 							image={card?.image}
 							species={card?.species}
 							status={card?.status}
-							active={true}
+							isFlipped={false}
+							startPosition="front"
 						/>
 					))}
 				</div>
 				<button onClick={() => navigate("/game")}> Jugar </button>
 			</>
 		);
-        }
-
-        return <div>
-            Something was wrong
-        </div>
 }
 
 export default Home
