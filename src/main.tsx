@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './error-page'
+import Game from './routes/Root/childrens/Game'
 import Home from './routes/Root/childrens/Home/Home'
 import Root from './routes/Root/Root'
 import './styles/default.css'
-import Game from './routes/Root/childrens/Game'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -15,12 +15,12 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home/>,
+                element: <Home characters />,
             },
             {
                 path: '/game',
-                element: <Game characters/>
-            }
+                element: <Game characters />,
+            },
         ],
     },
 ])
@@ -30,7 +30,7 @@ const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
-                    <RouterProvider router={router} />
+            <RouterProvider router={router} />
         </QueryClientProvider>
     </React.StrictMode>
 )

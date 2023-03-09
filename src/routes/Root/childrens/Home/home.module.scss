@@ -1,5 +1,5 @@
 .CardContainer {
-border: 1px solid #DEDEDE;
+    border: 1px solid #dedede;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -8,7 +8,7 @@ border: 1px solid #DEDEDE;
     align-items: stretch;
     width: 100%;
     height: 100%;
-    gap:16px;
+    gap: 16px;
 }
 
 /*

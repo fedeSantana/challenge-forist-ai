@@ -52,7 +52,6 @@
     position: relative;
     width: auto;
     object-fit: contain;
-
 }
 
 .cardFront,
@@ -74,7 +73,7 @@
 }
 
 .backBackground {
-    background-color: var(--card-background)
+    background-color: var(--card-background);
 }
 
 .reverse {

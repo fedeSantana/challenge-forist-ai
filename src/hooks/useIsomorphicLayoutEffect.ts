@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from 'react'
 
 /**
  * The React documentation says about useLayoutEffect:
@@ -16,6 +16,6 @@ This hook fixes this problem by switching between useEffect and useLayoutEffect 
 More info: https://usehooks-ts.com/react-hook/use-isomorphic-layout-effect
  */
 const useIsomorphicLayoutEffect =
-	typeof window !== "undefined" ? useLayoutEffect : useEffect;
+    typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-export default useIsomorphicLayoutEffect;
+export default useIsomorphicLayoutEffect

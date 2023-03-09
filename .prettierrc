@@ -1,0 +1,14 @@
+{
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true,
+    "plugins": ["prettier-plugin-organize-imports"],
+    "max-line-length": [
+        true,
+        {
+            "limit": 140,
+            "ignore-pattern": "^import |^export {(.*?)}"
+        }
+    ]
+}

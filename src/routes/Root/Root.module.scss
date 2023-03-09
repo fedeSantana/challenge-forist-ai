@@ -1,10 +1,8 @@
-
-
 :root {
-    --background: #233A59;
-    --background-secondary: #FFFAC2;
+    --background: #233a59;
+    --background-secondary: #fffac2;
     --text: #2e2e31;
-    --card-background: #A2F2F9;
+    --card-background: #a2f2f9;
     --white: #f6f4f4;
 }
 
@@ -13,8 +11,8 @@
 }
 
 .container {
-    width:100%;
-    max-width:70vw;
+    width: 100%;
+    max-width: 70vw;
     height: 100%;
     padding: 36px 72px 24px 72px;
     background-color: var(--background-secondary);
@@ -23,7 +21,6 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-
 }
 
 .rootContainer {

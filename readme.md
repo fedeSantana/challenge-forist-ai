@@ -4,17 +4,17 @@
 
 ## Links
 
-- [Repo](https://github.com/Rohit19060/<project-name> "<project-name> Repo")
+-   [Repo](https://github.com/Rohit19060/<project-name> '<project-name> Repo')
 
-- [Live](<Homepage url> "Live View")
+-   [Live](<Homepage url> 'Live View')
 
-- [Bugs](https://github.com/Rohit19060/<project-name>/issues "Issues Page")
+-   [Bugs](https://github.com/Rohit19060/<project-name>/issues 'Issues Page')
 
-- [API](<API Link> "API")
+-   [API](<API Link> 'API')
 
 ## Screenshots
 
-![Home Page](/screenshots/1.png "Home Page")
+![Home Page](/screenshots/1.png 'Home Page')
 
 ![](/screenshots/2.png)
 
@@ -39,22 +39,22 @@ Launches the test runner in the interactive watch mode.
 
 ## Built With
 
-- Typescript
-- Vite
-- Webpack
-- Pnpm
-- HTML5 | CSS
+-   Typescript
+-   Vite
+-   Webpack
+-   Pnpm
+-   HTML5 | CSS
 
 ## Future Updates
 
-- [ ] Reliable Storage
+-   [ ] Reliable Storage
 
 ## Author
 
 **Fede Santana**
 
-- [Profile](https://github.com/fedeSantana "Rohit jain")
-- [Email](fede.santana42@gmail.com "hola, nos encanto tu challenge")
+-   [Profile](https://github.com/fedeSantana 'Rohit jain')
+-   [Email](fede.santana42@gmail.com 'hola, nos encanto tu challenge')
 
 ## 🤝 Support
 
