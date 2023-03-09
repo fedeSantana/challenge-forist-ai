@@ -1,10 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useEffect,useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import Card from '../../../Components/Card/Card'
 import { CharactersQuery } from '../../../gql/graphql'
 import styles from '../childrens/Home/home.module.scss'
 
 type cardState = 'hide' | 'show' | 'frozen' | 'removed'
+
+function getStatus(statusToCompare : cardState){
+    return (status: cardState, index: number) =>
+        status === statusToCompare ? index : false
+}
+
+function getStatusArray(cardStatus : cardState[]) {
+    const showArray = cardStatus
+        .map(getStatus('show'))
+        .filter((status) => (status === false ? false : true)) as number[]
+    
+    const hiddenArray = cardStatus
+        .map(getStatus('hide'))
+        .filter((status) => (status === false ? false : true)) as number[]
+
+    const frozenArray = cardStatus
+        .map(getStatus('frozen'))
+        .filter((status) => (status === false ? false : true)) as number[]
+
+        return {
+            showArray: showArray,
+            hiddenArray: hiddenArray,
+            frozenArray: frozenArray,
+        }
+}
 
 function Game() {
     const [cardStatus, setCardStatus] = useState<cardState[]>(
@@ -20,53 +45,48 @@ function Game() {
 
     useEffect(() => {
         /** indices de las cartas visibles */
-        const showIds = cardStatus
-            .map((status, index) => {
-                return status === 'show' ? index : false
-            })
-            .filter((status) => (status === false ? false : true)) as number[]
-
-        /** Indices de las cartas no visibles */
-        const hideIds = cardStatus
-            .map((status, index) => {
-                return status === 'hide' ? index : false
-            })
-            .filter((status) => (status === false ? false : true)) as number[]
-
+        const indices = getStatusArray(cardStatus)
         /** Significa que dio vuelta dos cartas */
-        const turnEnd = showIds.length === 2
+        const turnEnd = indices.showArray.length === 2
+
+        const array = [...cardStatus]
 
         if (turnEnd) {
-            setTurnos(turnos + 1)
+
+             if (!array.some((status) => status === 'frozen')) {
+                 indices.hiddenArray.forEach((index) => (array[index] = 'frozen'))
+                 setCardStatus(array)
+             }
 
             const areTheSame =
                 desorderCharacters &&
-                desorderCharacters[showIds[0]]?.id ===
-                    desorderCharacters[showIds[1]]?.id
+                desorderCharacters[indices.showArray[0]]?.id ===
+                    desorderCharacters[indices.showArray[1]]?.id
 
-            const array = [...cardStatus]
-
-            hideIds.forEach((index) => array[index] === 'frozen')
-            setCardStatus(array)
 
             const timeoutId = setTimeout(() => {
                 if (areTheSame) {
-                    array[showIds[0]] = 'removed'
-                    array[showIds[1]] = 'removed'
+                    array[indices.showArray[0]] = 'removed'
+                    array[indices.showArray[1]] = 'removed'
+                    indices.frozenArray.forEach(
+                        (index) => (array[index] = 'hide')
+                    )
                     setCardStatus(array)
                     setAciertos(aciertos + 1)
                 }
 
                 if (!areTheSame) {
-                    array[showIds[0]] = 'hide'
-                    array[showIds[1]] = 'hide'
+                    array[indices.showArray[0]] = 'hide'
+                    array[indices.showArray[1]] = 'hide'
+                    console.info('indices.frozenArray', indices.frozenArray)
+                    indices.frozenArray.forEach((index) => (array[index] = 'hide'))
                     setCardStatus(array)
                 }
             }, 1000)
 
             return () => clearTimeout(timeoutId)
         }
-    }, [cardStatus, setCardStatus])
+    }, [cardStatus, setCardStatus, aciertos, desorderCharacters, turnos])
 
     return (
         <>
@@ -90,7 +110,21 @@ function Game() {
                             }
                             startPosition="back"
                             removed={cardStatus[index] === 'removed'}
-                            action={() => {
+                            action={cardStatus[index] === 'frozen' || cardStatus[index] === 'removed' ? undefined : 
+                            () => {
+
+                                const showIds = cardStatus
+                                    .map((status, index) => {
+                                        return status === 'show' ? index : false
+                                    })
+                                    .filter((status) =>
+                                        status === false ? false : true
+                                    ) as number[]
+
+                                    if (showIds.length === 1){
+                                        setTurnos(turnos + 1)
+                                    }
+
                                 const array = [...cardStatus]
                                 array[index] =
                                     array[index] === 'show' ? 'hide' : 'show'
