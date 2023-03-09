@@ -42,11 +42,9 @@ function CardContent({
             >
                 <img className={styles['cardImage']} src={image ?? ''} alt="" />
                 <h2 className={styles['cardTitle']}> {name} </h2>
-                <div>
-                    <p className={styles['cardDescription']}>
-                        {circleStatus} {status} - {species}
-                    </p>
-                </div>
+                <p className={styles['cardDescription']}>
+                    {circleStatus} {status} - {species}
+                </p>
             </div>
             <div
                 className={`
