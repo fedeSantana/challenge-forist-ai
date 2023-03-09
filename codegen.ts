@@ -1,9 +1,10 @@
-import { CodegenConfig } from '@graphql-codegen/cli'
+
+import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
+	overwrite: true,
 	schema: "https://rickandmortyapi.com/graphql",
 	documents: ["src/**/*.{ts,tsx}"],
-	ignoreNoDocuments: true, // for better experience with the watcher
 	generates: {
 		"./src/gql/": {
 			preset: "client",
@@ -12,4 +13,4 @@ const config: CodegenConfig = {
 	},
 };
 
-export default config
+export default config;

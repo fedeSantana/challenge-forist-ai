@@ -1,23 +1,33 @@
-import { graphql } from '../gql'
+import { useQuery } from "react-query";
+import { graphql } from "../gql/gql";
+import request from "graphql-request";
+
+
+
 
 export const getCharacters = graphql(`
-	query getCharacters {
-		characters(page: 2, filter: { name: "rick" }) {
-			info {
-				count
-			}
-			results {
-				name
-			}
-		}
-		location(id: 1) {
-			id
-		}
-		episodesByIds(ids: [1, 2]) {
-			id
+	query characters($ids: [ID!]!) {
+		charactersByIds(ids: $ids) {
+            id,
+			name,
+            image,
+            species,
+            status
 		}
 	}
 `);
+
+export function useGetCharacters() {
+    return useQuery(
+	["getCharacters"],
+    async () => {
+		return request("https://rickandmortyapi.com/graphql", getCharacters, {
+			ids: ["1","2", "3", "4", "5", "6"],
+		});
+	}
+    );
+}
+
 
 /*
 export const movieDetail = graphql(`
@@ -36,4 +46,3 @@ export const movieDetail = graphql(`
     }
 `)
 */
-

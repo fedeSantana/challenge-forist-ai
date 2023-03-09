@@ -10,10 +10,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * 2. It is not minifiable, so the string of a GraphQL query will be multiple times inside the bundle.
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
- * Therefore it is highly recommended to use the babel-plugin for production.
+ * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n\tquery getCharacters {\n\t\tcharacters(page: 2, filter: { name: \"rick\" }) {\n\t\t\tinfo {\n\t\t\t\tcount\n\t\t\t}\n\t\t\tresults {\n\t\t\t\tname\n\t\t\t}\n\t\t}\n\t\tlocation(id: 1) {\n\t\t\tid\n\t\t}\n\t\tepisodesByIds(ids: [1, 2]) {\n\t\t\tid\n\t\t}\n\t}\n": types.GetCharactersDocument,
+    "\n\tquery characters($ids: [ID!]!) {\n\t\tcharactersByIds(ids: $ids) {\n            id,\n\t\t\tname,\n            image,\n            species,\n            status\n\t\t}\n\t}\n": types.CharactersDocument,
 };
 
 /**
@@ -22,7 +22,7 @@ const documents = {
  *
  * @example
  * ```ts
- * const query = gql(`query GetUser($id: ID!) { user(id: $id) { name } }`);
+ * const query = graphql(`query GetUser($id: ID!) { user(id: $id) { name } }`);
  * ```
  *
  * The query argument is unknown!
@@ -33,7 +33,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n\tquery getCharacters {\n\t\tcharacters(page: 2, filter: { name: \"rick\" }) {\n\t\t\tinfo {\n\t\t\t\tcount\n\t\t\t}\n\t\t\tresults {\n\t\t\t\tname\n\t\t\t}\n\t\t}\n\t\tlocation(id: 1) {\n\t\t\tid\n\t\t}\n\t\tepisodesByIds(ids: [1, 2]) {\n\t\t\tid\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery getCharacters {\n\t\tcharacters(page: 2, filter: { name: \"rick\" }) {\n\t\t\tinfo {\n\t\t\t\tcount\n\t\t\t}\n\t\t\tresults {\n\t\t\t\tname\n\t\t\t}\n\t\t}\n\t\tlocation(id: 1) {\n\t\t\tid\n\t\t}\n\t\tepisodesByIds(ids: [1, 2]) {\n\t\t\tid\n\t\t}\n\t}\n"];
+export function graphql(source: "\n\tquery characters($ids: [ID!]!) {\n\t\tcharactersByIds(ids: $ids) {\n            id,\n\t\t\tname,\n            image,\n            species,\n            status\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery characters($ids: [ID!]!) {\n\t\tcharactersByIds(ids: $ids) {\n            id,\n\t\t\tname,\n            image,\n            species,\n            status\n\t\t}\n\t}\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

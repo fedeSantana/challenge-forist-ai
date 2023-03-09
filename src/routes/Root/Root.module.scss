@@ -1,0 +1,25 @@
+
+
+:root {
+    --background: #233A59;
+    --background-secondary: #FFFAC2;
+    --text: #2e2e31;
+    --card-background: #A2F2F9;
+    --white: #f6f4f4;
+}
+
+.header {
+    margin-bottom: 32px;
+}
+
+.container {
+    width:100%;
+    max-width:70vw;
+    padding: 36px 72px 24px 72px;
+    background-color: var(--background-secondary);
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+}
