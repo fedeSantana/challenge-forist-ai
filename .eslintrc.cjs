@@ -1,4 +1,7 @@
 module.exports = {
+    env: {
+        jest: true
+    },
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
