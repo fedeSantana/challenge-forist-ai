@@ -24,8 +24,8 @@ function Root() {
 
     if (
         characters.isLoading ||
-        characters === null ||
-        characters === undefined
+        characters.data === null ||
+        characters.data === undefined
     ) {
         return <div>CARGANDO</div>
     }
@@ -38,7 +38,7 @@ function Root() {
                 alt="Juego de memoria de Rick y Morty!"
             />
             <div className={styles['container']}>
-                <Outlet context={characters} />
+                <Outlet context={characters.data} />
             </div>
         </div>
     )

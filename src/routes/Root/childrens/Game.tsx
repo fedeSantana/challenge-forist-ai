@@ -33,12 +33,22 @@ function getStatusArray(cardStatus : cardState[]) {
 
 function Game() {
     const [cardStatus, setCardStatus] = useState<cardState[]>(
-        new Array(12).fill('hide')
+        new Array(12).fill('show')
     )
     const [aciertos, setAciertos] = useState<number>(0)
     const [turnos, setTurnos] = useState<number>(0)
     const characters = useOutletContext<NonNullable<CharactersQuery['charactersByIds']>>()
 
+    /** Se encarga de esconder todas las cartas luego de 3 segundos la primera vez que cargas la página */
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setCardStatus(new Array(12).fill('hide'))
+        }, 3000)
+
+        return () => clearTimeout(timeoutId)
+    }, [])
+
+    /** Cuando dos cartas estan dadas vuelta, se encarga de decidir si tienen que irse o quedarse */
     useEffect(() => {
         /** indices de las cartas visibles */
         const indices = getStatusArray(cardStatus)
@@ -60,25 +70,22 @@ function Game() {
                 characters[indices.showArray[1]]?.id
 
             const timeoutId = setTimeout(() => {
+                /** Si son iguales los remuevo y aumento el contador de aciertos */
                 if (areTheSame) {
                     array[indices.showArray[0]] = 'removed'
                     array[indices.showArray[1]] = 'removed'
-                    indices.frozenArray.forEach(
-                        (index) => (array[index] = 'hide')
-                    )
                     setCardStatus(array)
                     setAciertos(aciertos + 1)
                 }
 
+                /** Si no son iguales, los escondo y además descongelo a los demás */
                 if (!areTheSame) {
                     array[indices.showArray[0]] = 'hide'
                     array[indices.showArray[1]] = 'hide'
-                    console.info('indices.frozenArray', indices.frozenArray)
-                    indices.frozenArray.forEach(
-                        (index) => (array[index] = 'hide')
-                    )
                     setCardStatus(array)
                 }
+
+                indices.frozenArray.forEach((index) => (array[index] = 'hide'))
             }, 1000)
 
             return () => clearTimeout(timeoutId)
@@ -113,19 +120,9 @@ function Game() {
                                 cardStatus[index] === 'show'
                                     ? undefined
                                     : () => {
-                                          const showIds = cardStatus
-                                              .map((status, index) => {
-                                                  return status === 'show'
-                                                      ? index
-                                                      : false
-                                              })
-                                              .filter((status) =>
-                                                  status === false
-                                                      ? false
-                                                      : true
-                                              ) as number[]
+                                        const {showArray} = getStatusArray(cardStatus)
 
-                                          if (showIds.length === 1) {
+                                          if (showArray.length === 1) {
                                               setTurnos(turnos + 1)
                                           }
 
