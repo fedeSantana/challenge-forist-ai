@@ -37,11 +37,7 @@ function Game() {
     )
     const [aciertos, setAciertos] = useState<number>(0)
     const [turnos, setTurnos] = useState<number>(0)
-    const characters = useOutletContext<CharactersQuery>()
-
-    const desorderCharacters = characters
-        ? [characters.charactersByIds, characters.charactersByIds].flat()
-        : undefined
+    const characters = useOutletContext<NonNullable<CharactersQuery['charactersByIds']>>()
 
     useEffect(() => {
         /** indices de las cartas visibles */
@@ -52,17 +48,16 @@ function Game() {
         const array = [...cardStatus]
 
         if (turnEnd) {
-
-             if (!array.some((status) => status === 'frozen')) {
-                 indices.hiddenArray.forEach((index) => (array[index] = 'frozen'))
-                 setCardStatus(array)
-             }
+            if (!array.some((status) => status === 'frozen')) {
+                indices.hiddenArray.forEach(
+                    (index) => (array[index] = 'frozen')
+                )
+                setCardStatus(array)
+            }
 
             const areTheSame =
-                desorderCharacters &&
-                desorderCharacters[indices.showArray[0]]?.id ===
-                    desorderCharacters[indices.showArray[1]]?.id
-
+                characters[indices.showArray[0]]?.id ===
+                characters[indices.showArray[1]]?.id
 
             const timeoutId = setTimeout(() => {
                 if (areTheSame) {
@@ -79,14 +74,16 @@ function Game() {
                     array[indices.showArray[0]] = 'hide'
                     array[indices.showArray[1]] = 'hide'
                     console.info('indices.frozenArray', indices.frozenArray)
-                    indices.frozenArray.forEach((index) => (array[index] = 'hide'))
+                    indices.frozenArray.forEach(
+                        (index) => (array[index] = 'hide')
+                    )
                     setCardStatus(array)
                 }
             }, 1000)
 
             return () => clearTimeout(timeoutId)
         }
-    }, [cardStatus, setCardStatus, aciertos, desorderCharacters, turnos])
+    }, [cardStatus, setCardStatus, aciertos, characters, turnos])
 
     return (
         <>
@@ -97,7 +94,7 @@ function Game() {
                 <h2 className={styles['ContainerTitle']}> Turnos: {turnos}</h2>
             </div>
             <div className={styles['CardContainer']}>
-                {desorderCharacters?.map((card, index) => {
+                {characters?.map((card, index) => {
                     return (
                         <Card
                             key={`${card?.id}_${index}`}
