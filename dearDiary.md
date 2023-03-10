@@ -91,6 +91,19 @@ A la hora de manejar estado en React tenemos que tener muy en claro qué queremo
 Para eso yo decidí que el juego controla las cartas y las cartas sólo se controlan si se quieren 'mostrar' por si mismas. 
 Un useEffect, complicado, verá si esta sucediendo una jugada (dos cartas dadas vuelta) y frezará todas las demás cartas y actualizará el estado, desvaneciendolas o ocultandolas nuevamente de acuerdo a si el usuario atinó o no.
 
-Si tengo más tiempo mejoraré y simplificaré ese useEffect que es difícil de entender, mejoraré el CSS para que ande una vista del celular y agregaré algunas cosas divertidas que tenía ganas de añadir si sobra el tiempo (jugar con todos los personajes alternativos de morty en las cartas, poner una carta trampa que te de vueltas todas las cartas, animaciones de las cartas repartiendosé, que los botones se vean bien, etc)
+## Cosas a mejorar
+
+Si tengo más tiempo me encargaré de:
+1. Hacer test con Cypress
+2. Mejorar el CSS para que ande en celular
+3. Simplificar el código, sobretodo el useEffect
+4. Que los botones se vean bien
+
+Luego extras si sobra el tiempo:
+5. Algunas animaciones
+6. Añadir niveles
+7. Añadir dificultad y que se pueda jugar con más cartas
+8. Podes escoger personajes
+9. Hacer cartas especiales que desordenen las cartas o creen nuevas
 
 
