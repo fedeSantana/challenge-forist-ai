@@ -110,26 +110,36 @@ function Game() {
                             }
                             startPosition="back"
                             removed={cardStatus[index] === 'removed'}
-                            action={cardStatus[index] === 'frozen' || cardStatus[index] === 'removed' ? undefined : 
-                            () => {
+                            action={
+                                cardStatus[index] === 'frozen' ||
+                                cardStatus[index] === 'removed' ||
+                                cardStatus[index] === 'show'
+                                    ? undefined
+                                    : () => {
+                                          const showIds = cardStatus
+                                              .map((status, index) => {
+                                                  return status === 'show'
+                                                      ? index
+                                                      : false
+                                              })
+                                              .filter((status) =>
+                                                  status === false
+                                                      ? false
+                                                      : true
+                                              ) as number[]
 
-                                const showIds = cardStatus
-                                    .map((status, index) => {
-                                        return status === 'show' ? index : false
-                                    })
-                                    .filter((status) =>
-                                        status === false ? false : true
-                                    ) as number[]
+                                          if (showIds.length === 1) {
+                                              setTurnos(turnos + 1)
+                                          }
 
-                                    if (showIds.length === 1){
-                                        setTurnos(turnos + 1)
-                                    }
-
-                                const array = [...cardStatus]
-                                array[index] =
-                                    array[index] === 'show' ? 'hide' : 'show'
-                                setCardStatus(array)
-                            }}
+                                          const array = [...cardStatus]
+                                          array[index] =
+                                              array[index] === 'hide'
+                                                  ? 'show'
+                                                  : 'hide'
+                                          setCardStatus(array)
+                                      }
+                            }
                         />
                     )
                 })}
