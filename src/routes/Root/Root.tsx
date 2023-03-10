@@ -8,13 +8,25 @@ function Root() {
     const characters = useGetCharacters({
         staleTime: Infinity,
         refetchOnWindowFocus: false,
+        select(characters) {
+            if (!characters){
+                return []
+            }
+
+            return shuffle(
+                [
+                    characters,
+                    characters,
+                ].flat()
+            )
+        },
     })
-    const desorderCharacters = shuffle(
-        [characters.data?.charactersByIds, characters.data?.charactersByIds].flat()
-    )
 
-
-    if (characters.isLoading || desorderCharacters === null || desorderCharacters === undefined) {
+    if (
+        characters.isLoading ||
+        characters === null ||
+        characters === undefined
+    ) {
         return <div>CARGANDO</div>
     }
 
@@ -26,7 +38,7 @@ function Root() {
                 alt="Juego de memoria de Rick y Morty!"
             />
             <div className={styles['container']}>
-                <Outlet context={desorderCharacters} />
+                <Outlet context={characters} />
             </div>
         </div>
     )

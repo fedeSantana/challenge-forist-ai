@@ -15,19 +15,33 @@ export const getCharacters = graphql(`
     }
 `)
 
-type QueryOptions = Omit<UseQueryOptions<CharactersQuery, unknown, CharactersQuery, string[]>, "queryKey" | "queryFn">
+
+type QueryOptions = Omit<
+    UseQueryOptions<
+        CharactersQuery['charactersByIds'],
+        unknown,
+        CharactersQuery['charactersByIds'],
+        string[]
+    >,
+    'queryKey' | 'queryFn'
+>
 
 export function useGetCharacters(queryOptions?: QueryOptions) {
     return useQuery(
         ['getCharacters'],
         async () => {
-            return request(
+            const characters = await request(
                 'https://rickandmortyapi.com/graphql',
                 getCharacters,
                 {
                     ids: ['1', '2', '3', '4', '5', '6'],
                 }
             )
+            if (characters.charactersByIds === null || characters.charactersByIds === undefined || characters.charactersByIds?.length === 0) 
+            {
+                return []
+            }
+            return characters.charactersByIds
         },
         {
             ...queryOptions,
