@@ -9,16 +9,11 @@ function Root() {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         select(characters) {
-            if (!characters){
+            if (!characters) {
                 return []
             }
 
-            return shuffle(
-                [
-                    characters,
-                    characters,
-                ].flat()
-            )
+            return shuffle([characters, characters].flat())
         },
     })
 

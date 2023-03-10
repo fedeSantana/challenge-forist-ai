@@ -1,5 +1,5 @@
 import request from 'graphql-request'
-import { useQuery,UseQueryOptions } from 'react-query'
+import { useQuery, UseQueryOptions } from 'react-query'
 import { graphql } from '../gql/gql'
 import { CharactersQuery } from '../gql/graphql'
 
@@ -14,7 +14,6 @@ export const getCharacters = graphql(`
         }
     }
 `)
-
 
 type QueryOptions = Omit<
     UseQueryOptions<
@@ -37,8 +36,11 @@ export function useGetCharacters(queryOptions?: QueryOptions) {
                     ids: ['1', '2', '3', '4', '5', '6'],
                 }
             )
-            if (characters.charactersByIds === null || characters.charactersByIds === undefined || characters.charactersByIds?.length === 0) 
-            {
+            if (
+                characters.charactersByIds === null ||
+                characters.charactersByIds === undefined ||
+                characters.charactersByIds?.length === 0
+            ) {
                 return []
             }
             return characters.charactersByIds

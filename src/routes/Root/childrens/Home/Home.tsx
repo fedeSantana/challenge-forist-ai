@@ -1,4 +1,4 @@
-import { useNavigate,useOutletContext } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import Card from '../../../../Components/Card/Card'
 import { CharactersQuery } from '../../../../gql/graphql'
 import styles from './home.module.scss'
