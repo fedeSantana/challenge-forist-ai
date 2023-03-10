@@ -4,7 +4,7 @@
 
 ## Links
 
--   [Diario de código](https://github.com/fedeSantana/challenge-forist-ai/blob/main/dearDiary.md)
+-   [Diario de código](https://github.com/fedeSantana/challenge-forist-ai/blob/main/dearDiary.md) (ac
 
 -   [API](https://rickandmortyapi.com/)
 
