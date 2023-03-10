@@ -4,21 +4,13 @@
 
 ## Links
 
--   [Repo](https://github.com/Rohit19060/<project-name> '<project-name> Repo')
+-   [Diario de código](https://github.com/fedeSantana/challenge-forist-ai/blob/main/dearDiary.md)
 
--   [Live](<Homepage url> 'Live View')
-
--   [Bugs](https://github.com/Rohit19060/<project-name>/issues 'Issues Page')
-
--   [API](<API Link> 'API')
+-   [API](https://rickandmortyapi.com/)
 
 ## Screenshots
 
-![Home Page](/screenshots/1.png 'Home Page')
-
-![](/screenshots/2.png)
-
-![](/screenshots/3.png)
+![image](https://user-images.githubusercontent.com/54949334/224315773-9b24b17e-0bae-405f-8d01-feefca273653.png)
 
 ## Available Commands
 
@@ -33,10 +25,6 @@ You will also see any lint errors in the console.
 
 Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. Your app will be ready to deploy!
 
-### `"preview": "vite preview"`,
-
-Launches the test runner in the interactive watch mode.
-
 ## Built With
 
 -   Typescript
@@ -44,10 +32,6 @@ Launches the test runner in the interactive watch mode.
 -   Webpack
 -   Pnpm
 -   HTML5 | CSS
-
-## Future Updates
-
--   [ ] Reliable Storage
 
 ## Author
 
