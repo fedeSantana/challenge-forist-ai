@@ -91,6 +91,15 @@ A la hora de manejar estado en React tenemos que tener muy en claro qué queremo
 Para eso yo decidí que el juego controla las cartas y las cartas sólo se controlan si se quieren 'mostrar' por si mismas. 
 Un useEffect, complicado, verá si esta sucediendo una jugada (dos cartas dadas vuelta) y frezará todas las demás cartas y actualizará el estado, desvaneciendolas o ocultandolas nuevamente de acuerdo a si el usuario atinó o no.
 
+## Tests unitarios
+
+Honestamente había poco que testear con tests unitarios y deje todo el entorno en TS con un test como demostración de lo que se puede hacer
+![image](https://user-images.githubusercontent.com/54949334/224323735-d021d61a-657c-4fb0-8187-0e3b8ea003c6.png)
+
+PD: Fun fact, hay una posibilidad muy muy pequeña de que el test falle. Pero es muuuuuy pequeña.
+
+Sí estaría bueno testear toda la jugabilidad. 
+
 ## Cosas a mejorar
 
 Si tengo más tiempo me encargaré de:
